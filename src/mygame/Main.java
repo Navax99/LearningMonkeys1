@@ -19,6 +19,7 @@ public class Main extends SimpleApplication {
     private myTimer mytimer = new myTimer(getTimer());
     private BoxField boxfield;
     private PlayerControls playercontrols;
+    private IngameGUI ingamegui;
     private int score = 0;
 
     public static void main(String[] args) {
@@ -32,6 +33,7 @@ public class Main extends SimpleApplication {
         boxfield.setRandomBox();
         playercontrols = new PlayerControls(cam, boxfield.getNodeToFind(), inputManager);
         playercontrols.setUp();
+        ingamegui = new IngameGUI(guiNode);
         runTimer();
         setUpCam();
 
