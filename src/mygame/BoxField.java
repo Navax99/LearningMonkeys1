@@ -4,6 +4,7 @@
  */
 package mygame;
 
+import com.jme3.app.state.AppState;
 import com.jme3.material.Material;
 import com.jme3.math.ColorRGBA;
 import com.jme3.scene.Geometry;
@@ -63,9 +64,9 @@ class BoxField {
         
         geometrys[actualx][actualy][actualz].setMaterial(mat_normal);
         
-        actualx = Math.abs(rnd.nextInt()%sizex);
-        actualy = Math.abs(rnd.nextInt()%sizey);
-        actualz = Math.abs(rnd.nextInt()%sizez);
+        actualx = rnd.nextInt(sizex);
+        actualy = rnd.nextInt(sizey);
+        actualz = rnd.nextInt(sizez);
         
         geometrys[actualx][actualy][actualz].setMaterial(mat_catch);
 

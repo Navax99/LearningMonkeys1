@@ -1,6 +1,7 @@
 package mygame;
 
 import com.jme3.app.SimpleApplication;
+import com.jme3.light.PointLight;
 import com.jme3.material.Material;
 import com.jme3.math.ColorRGBA;
 import com.jme3.math.FastMath;
@@ -19,7 +20,7 @@ public class Main extends SimpleApplication {
     private myTimer mytimer = new myTimer(getTimer());
     private BoxField boxfield;
     private PlayerControls playercontrols;
-    private IngameGUI ingamegui;
+    private PointLight lamp;
     private int score = 0;
 
     public static void main(String[] args) {
@@ -33,7 +34,6 @@ public class Main extends SimpleApplication {
         boxfield.setRandomBox();
         playercontrols = new PlayerControls(cam, boxfield.getNodeToFind(), inputManager);
         playercontrols.setUp();
-        ingamegui = new IngameGUI(guiNode);
         runTimer();
         setUpCam();
 
@@ -49,11 +49,11 @@ public class Main extends SimpleApplication {
         }
         if (playercontrols.havefound()) {
             ++score;
+            System.out.println("You have "+score+ " points");
             boxfield.setRandomBox();
             playercontrols.setNode(boxfield.getNodeToFind());
             runTimer();
         }
-
     }
 
     @Override
@@ -62,7 +62,7 @@ public class Main extends SimpleApplication {
     }
 
     private void runTimer() {
-        mytimer.setTimer(0, 10);
+        mytimer.setTimer(EnvVariables.TIMER_MINUTES, EnvVariables.TIMER_SECONDS);
     }
 
     private void setUpCam() {
@@ -71,5 +71,6 @@ public class Main extends SimpleApplication {
         //regenerem la camara perspectiva
         cam.setFrustumPerspective(45f, (float) cam.getWidth() / cam.getHeight(), 0.01f, 1000f);
         flyCam.setMoveSpeed(4);
+        
     }
 }
